@@ -122,11 +122,14 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
-        <a href="#top" className="flex min-w-0 items-center gap-2">
-          <Gauge className="h-6 w-6 shrink-0 text-primary" strokeWidth={2.5} />
-          <span className="truncate font-display text-lg font-black italic tracking-wider">
-            REVUP <span className="text-primary">RENT</span>
-          </span>
+        <a href="#top" className="flex min-w-0 items-center" aria-label="RevUp Rent — strona główna">
+          <img
+            src={logoUrl}
+            alt="RevUp Rent"
+            className="h-10 w-auto shrink-0 sm:h-12"
+            width={804}
+            height={325}
+          />
         </a>
 
         <div className="hidden items-center gap-7 lg:flex">
@@ -291,9 +294,9 @@ function Fleet() {
                   src={car.img}
                   alt={car.name}
                   loading="lazy"
-                  width={1024}
-                  height={640}
-                  className="aspect-[8/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  width={1600}
+                  height={900}
+                  className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-wide text-primary-foreground uppercase glow-red-sm">
                   Rezerwuj wkrótce
