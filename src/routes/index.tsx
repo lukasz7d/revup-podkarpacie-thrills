@@ -722,6 +722,8 @@ function Footer() {
                 key={s.name}
                 href={s.href}
                 aria-label={s.name}
+                target={s.external ? "_blank" : undefined}
+                rel={s.external ? "noopener noreferrer" : undefined}
                 className="grid h-10 w-10 place-items-center rounded-full border border-border text-muted-foreground transition-all hover:border-primary hover:text-primary hover:glow-red-sm"
               >
                 <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
