@@ -20,10 +20,17 @@ import {
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-supercar.jpg";
-import carRs3 from "@/assets/car-rs3.jpg";
-import carM4 from "@/assets/car-m4.jpg";
-import car911 from "@/assets/car-911.jpg";
-import carR8 from "@/assets/car-r8.jpg";
+import logoAsset from "@/assets/logo.png.asset.json";
+import carRs3Asset from "@/assets/car-rs3.jpg.asset.json";
+import carM4Asset from "@/assets/car-m4.jpg.asset.json";
+import car911Asset from "@/assets/car-911.jpg.asset.json";
+import carR8Asset from "@/assets/car-r8.jpg.asset.json";
+
+const logoUrl = logoAsset.url;
+const carRs3 = carRs3Asset.url;
+const carM4 = carM4Asset.url;
+const car911 = car911Asset.url;
+const carR8 = carR8Asset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
