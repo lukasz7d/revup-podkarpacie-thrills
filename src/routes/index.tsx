@@ -23,7 +23,7 @@ import heroImg from "@/assets/hero-supercar.jpg";
 import logoAsset from "@/assets/logo.png.asset.json";
 import carRs3Asset from "@/assets/car-rs3.jpg.asset.json";
 import carM4Asset from "@/assets/car-m4.jpg.asset.json";
-import car911Asset from "@/assets/car-911.jpg.asset.json";
+import car911Asset from "@/assets/car-p911.jpg.asset.json";
 import carR8Asset from "@/assets/car-r8.jpg.asset.json";
 
 const logoUrl = logoAsset.url;
