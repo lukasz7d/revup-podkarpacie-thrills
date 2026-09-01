@@ -21,16 +21,14 @@ import {
 
 import heroImg from "@/assets/hero-supercar.jpg";
 import logoAsset from "@/assets/logo.png.asset.json";
-import carRs3Asset from "@/assets/car-rs3.jpg.asset.json";
-import carM4Asset from "@/assets/car-m4.jpg.asset.json";
-import car911Asset from "@/assets/car-p911.jpg.asset.json";
-import carR8Asset from "@/assets/car-r8.jpg.asset.json";
+import v10Asset from "@/assets/category-v10.jpg.asset.json";
+import coupeAsset from "@/assets/category-coupe.jpg.asset.json";
+import exoticAsset from "@/assets/category-exotic.jpg.asset.json";
 
 const logoUrl = logoAsset.url;
-const carRs3 = carRs3Asset.url;
-const carM4 = carM4Asset.url;
-const car911 = car911Asset.url;
-const carR8 = carR8Asset.url;
+const categoryV10 = v10Asset.url;
+const categoryCoupe = coupeAsset.url;
+const categoryExotic = exoticAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
