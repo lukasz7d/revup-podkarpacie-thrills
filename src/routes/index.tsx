@@ -177,7 +177,7 @@ function Hero() {
         <div className="max-w-2xl">
           <div className="mb-6 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/10 px-3 py-1 text-xs font-bold tracking-wide text-primary uppercase">
-              <Zap className="h-3 w-3" /> Premiera Sezon 2026/2027
+              <Sparkles className="h-3 w-3" /> Premiera Sezon 2026/2027
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
               Model Podnajmu &amp; Rent-a-Car
