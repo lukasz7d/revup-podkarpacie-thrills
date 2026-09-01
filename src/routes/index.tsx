@@ -609,7 +609,7 @@ function Waitlist() {
             </div>
             <div>
               <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                Preferowane auto
+                Preferowana kategoria
               </label>
               <select
                 required
@@ -617,14 +617,14 @@ function Waitlist() {
                 className="mt-1.5 w-full appearance-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-ring"
               >
                 <option value="" disabled>
-                  Wybierz z floty…
+                  Wybierz kategorię…
                 </option>
-                {CARS.map((c) => (
-                  <option key={c.name} value={c.name}>
-                    {c.name}
+                {CATEGORIES.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.title}
                   </option>
                 ))}
-                <option value="biezczady-experience">Bieszczady Supercar Experience</option>
+                <option value="bieszczady-experience">Bieszczady Supercar Experience</option>
                 <option value="dowolne">Jeszcze nie wiem — zaskoczcie mnie</option>
               </select>
             </div>
