@@ -507,10 +507,10 @@ function Owners() {
 
 function About() {
   const stats = [
-    { icon: Zap, value: "4+", label: "supercary w flocie startowej" },
-    { icon: Timer, value: "3,1 s", label: "najszybsze 0–100 km/h" },
+    { icon: Gauge, value: "3", label: "kategorie aut w przygotowaniu" },
+    { icon: Timer, value: "Sezon 2026/27", label: "premiera floty" },
     { icon: MapPin, value: "3", label: "lokalizacje: Rzeszów, Sanok, Bieszczady" },
-    { icon: Cog, value: "24/7", label: "telemetria i opieka nad flotą" },
+    { icon: ShieldCheck, value: "100%", label: "ubezpieczenie AC i telemetria" },
   ];
 
   return (
