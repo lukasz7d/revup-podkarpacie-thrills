@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Gauge,
   ShieldCheck,
@@ -12,9 +12,7 @@ import {
   Phone,
   Menu,
   X,
-  Zap,
   Timer,
-  Cog,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
