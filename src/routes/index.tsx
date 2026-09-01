@@ -54,54 +54,29 @@ export const Route = createFileRoute("/")({
 
 /* ---------------------------------- data ---------------------------------- */
 
-type Category = "all" | "rs" | "supercar" | "v8v10";
-
-const FILTERS: { id: Category; label: string }[] = [
-  { id: "all", label: "Wszystkie" },
-  { id: "rs", label: "Hot-Hatch / RS" },
-  { id: "supercar", label: "Supercary" },
-  { id: "v8v10", label: "V8 / V10" },
-];
-
-const CARS: {
-  name: string;
+const CATEGORIES: {
+  id: string;
+  title: string;
+  subtitle: string;
   img: string;
-  category: Category[];
-  specs: string[];
-  price: string;
-  tagline: string;
 }[] = [
   {
-    name: "Audi RS3 Sedan",
-    img: carRs3,
-    category: ["rs"],
-    specs: ["400 KM", "0–100: 3,8 s", "Napęd Quattro"],
-    price: "od 1 200 PLN / doba",
-    tagline: "Pięciocylindrowa legenda w kompaktowym nadwoziu.",
+    id: "supercar-v10",
+    title: "Supercary & V10",
+    subtitle: "Maksymalne emocje, bezkompromisowe osiągi i rasowy dźwięk.",
+    img: categoryV10,
   },
   {
-    name: "BMW M4 Competition",
-    img: carM4,
-    category: ["rs"],
-    specs: ["510 KM", "0–100: 3,9 s", "RWD / xDrive"],
-    price: "od 1 600 PLN / doba",
-    tagline: "Precyzja bawarskiej inżynierii na każdym zakręcie.",
+    id: "sport-coupe",
+    title: "Sportowe Coupe & M / RS",
+    subtitle: "Niemiecka precyzja i moc stworzona na bieszczadzkie serpentyny.",
+    img: categoryCoupe,
   },
   {
-    name: "Porsche 911 Carrera S",
-    img: car911,
-    category: ["supercar"],
-    specs: ["450 KM", "Boxer Twin-Turbo", "RWD"],
-    price: "od 2 400 PLN / doba",
-    tagline: "Ikona. Nic dodać, nic ująć.",
-  },
-  {
-    name: "Audi R8 V10 Performance",
-    img: carR8,
-    category: ["supercar", "v8v10"],
-    specs: ["620 KM", "Wolnossące V10", "0–100: 3,1 s"],
-    price: "od 3 900 PLN / doba",
-    tagline: "Ostatni Mohikanin atmosferycznych V10.",
+    id: "exotic",
+    title: "Egzotyki & Unikaty",
+    subtitle: "Kolekcjonerskie perełki, których nie znajdziesz w zwykłych wypożyczalniach.",
+    img: categoryExotic,
   },
 ];
 
