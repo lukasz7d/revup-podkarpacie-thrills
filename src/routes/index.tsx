@@ -221,84 +221,50 @@ function Hero() {
 /* ---------------------------------- fleet --------------------------------- */
 
 function Fleet() {
-  const [filter, setFilter] = useState<Category>("all");
-  const visible = useMemo(
-    () => CARS.filter((c) => filter === "all" || c.category.includes(filter)),
-    [filter],
-  );
-
   return (
     <section id="flota" className="carbon-texture scroll-mt-16 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
-              Flota RevUp
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
-              Nasza Flota <span className="text-muted-foreground">(wkrótce w wynajmie)</span>
-            </h2>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {FILTERS.map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setFilter(f.id)}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                  filter === f.id
-                    ? "border-primary bg-primary text-primary-foreground glow-red-sm"
-                    : "border-border bg-secondary/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+        <div className="max-w-3xl">
+          <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
+            Flota RevUp
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
+            Nasza Flota <span className="text-muted-foreground">(wkrótce w wynajmie)</span>
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Trzy kategorie maszyn przygotowanych na bieszczadzkie trasy. Pierwsze auta już w sezonie
+            2026/2027.
+          </p>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
-          {visible.map((car) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((cat) => (
             <article
-              key={car.name}
+              key={cat.id}
               className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:glow-red-sm"
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={car.img}
-                  alt={car.name}
+                  src={cat.img}
+                  alt={cat.title}
                   loading="lazy"
-                  width={1600}
-                  height={900}
+                  width={1792}
+                  height={1024}
                   className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-wide text-primary-foreground uppercase glow-red-sm">
-                  Rezerwuj wkrótce
+                  Premiera wkrótce
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="font-display text-lg font-black uppercase italic">{car.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{car.tagline}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {car.specs.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-border bg-secondary/70 px-2.5 py-1 text-xs font-medium text-metallic"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-5 flex items-center justify-between gap-3">
-                  <span className="font-display text-sm font-bold tracking-wide text-primary">
-                    {car.price}
-                  </span>
-                  <a
-                    href="#waitlist"
-                    className="rounded-md border border-primary/60 px-3.5 py-2 text-xs font-bold tracking-wide text-primary uppercase transition-all hover:bg-primary hover:text-primary-foreground"
-                  >
-                    Sprawdź dostępność
-                  </a>
-                </div>
+                <h3 className="font-display text-lg font-black uppercase italic">{cat.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{cat.subtitle}</p>
+                <a
+                  href="#waitlist"
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold tracking-wide text-primary uppercase transition-colors hover:text-primary-foreground"
+                >
+                  Powiadom mnie o premierze <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </article>
           ))}
