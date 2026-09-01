@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Gauge,
   ShieldCheck,
@@ -12,25 +12,21 @@ import {
   Phone,
   Menu,
   X,
-  Zap,
   Timer,
-  Cog,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-supercar.jpg";
 import logoAsset from "@/assets/logo.png.asset.json";
-import carRs3Asset from "@/assets/car-rs3.jpg.asset.json";
-import carM4Asset from "@/assets/car-m4.jpg.asset.json";
-import car911Asset from "@/assets/car-p911.jpg.asset.json";
-import carR8Asset from "@/assets/car-r8.jpg.asset.json";
+import v10Asset from "@/assets/category-v10.jpg.asset.json";
+import coupeAsset from "@/assets/category-coupe.jpg.asset.json";
+import exoticAsset from "@/assets/category-exotic.jpg.asset.json";
 
 const logoUrl = logoAsset.url;
-const carRs3 = carRs3Asset.url;
-const carM4 = carM4Asset.url;
-const car911 = car911Asset.url;
-const carR8 = carR8Asset.url;
+const categoryV10 = v10Asset.url;
+const categoryCoupe = coupeAsset.url;
+const categoryExotic = exoticAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +35,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Wynajem samochodów sportowych i supercarów na Podkarpaciu. Audi RS3, BMW M4, Porsche 911, Audi R8 V10. Bieszczady Supercar Experience. Zapisz się na waitlistę z rabatem -10%.",
+          "Wynajem samochodów sportowych i supercarów na Podkarpaciu. Supercary V10, sportowe coupe M/RS oraz egzotyki. Bieszczady Supercar Experience. Zapisz się na waitlistę z rabatem -10%.",
       },
       { property: "og:title", content: "RevUp Rent — Wynajem supercarów na Podkarpaciu" },
       {
@@ -56,54 +52,29 @@ export const Route = createFileRoute("/")({
 
 /* ---------------------------------- data ---------------------------------- */
 
-type Category = "all" | "rs" | "supercar" | "v8v10";
-
-const FILTERS: { id: Category; label: string }[] = [
-  { id: "all", label: "Wszystkie" },
-  { id: "rs", label: "Hot-Hatch / RS" },
-  { id: "supercar", label: "Supercary" },
-  { id: "v8v10", label: "V8 / V10" },
-];
-
-const CARS: {
-  name: string;
+const CATEGORIES: {
+  id: string;
+  title: string;
+  subtitle: string;
   img: string;
-  category: Category[];
-  specs: string[];
-  price: string;
-  tagline: string;
 }[] = [
   {
-    name: "Audi RS3 Sedan",
-    img: carRs3,
-    category: ["rs"],
-    specs: ["400 KM", "0–100: 3,8 s", "Napęd Quattro"],
-    price: "od 1 200 PLN / doba",
-    tagline: "Pięciocylindrowa legenda w kompaktowym nadwoziu.",
+    id: "supercar-v10",
+    title: "Supercary & V10",
+    subtitle: "Maksymalne emocje, bezkompromisowe osiągi i rasowy dźwięk.",
+    img: categoryV10,
   },
   {
-    name: "BMW M4 Competition",
-    img: carM4,
-    category: ["rs"],
-    specs: ["510 KM", "0–100: 3,9 s", "RWD / xDrive"],
-    price: "od 1 600 PLN / doba",
-    tagline: "Precyzja bawarskiej inżynierii na każdym zakręcie.",
+    id: "sport-coupe",
+    title: "Sportowe Coupe & M / RS",
+    subtitle: "Niemiecka precyzja i moc stworzona na bieszczadzkie serpentyny.",
+    img: categoryCoupe,
   },
   {
-    name: "Porsche 911 Carrera S",
-    img: car911,
-    category: ["supercar"],
-    specs: ["450 KM", "Boxer Twin-Turbo", "RWD"],
-    price: "od 2 400 PLN / doba",
-    tagline: "Ikona. Nic dodać, nic ująć.",
-  },
-  {
-    name: "Audi R8 V10 Performance",
-    img: carR8,
-    category: ["supercar", "v8v10"],
-    specs: ["620 KM", "Wolnossące V10", "0–100: 3,1 s"],
-    price: "od 3 900 PLN / doba",
-    tagline: "Ostatni Mohikanin atmosferycznych V10.",
+    id: "exotic",
+    title: "Egzotyki & Unikaty",
+    subtitle: "Kolekcjonerskie perełki, których nie znajdziesz w zwykłych wypożyczalniach.",
+    img: categoryExotic,
   },
 ];
 
@@ -206,7 +177,7 @@ function Hero() {
         <div className="max-w-2xl">
           <div className="mb-6 flex flex-wrap gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/10 px-3 py-1 text-xs font-bold tracking-wide text-primary uppercase">
-              <Zap className="h-3 w-3" /> Premiera Sezon 2026/2027
+              <Sparkles className="h-3 w-3" /> Premiera Sezon 2026/2027
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
               Model Podnajmu &amp; Rent-a-Car
@@ -226,17 +197,17 @@ function Hero() {
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <a
-              href="#waitlist"
+              href="#wlasciciele"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-8 py-4 font-display text-base font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
             >
-              Zapisz się na Waitlistę (-10% na start)
+              Zgłoś swoje auto do floty
               <ArrowRight className="h-5 w-5" />
             </a>
             <a
-              href="#wlasciciele"
+              href="#waitlist"
               className="inline-flex items-center justify-center gap-2 rounded-md border border-foreground/25 bg-foreground/5 px-8 py-4 font-display text-base font-bold tracking-wide text-foreground uppercase italic backdrop-blur transition-all hover:border-primary/60 hover:text-primary"
             >
-              Zgłoś swoje auto do floty
+              Dołącz do Waitlisty (-10% na start)
             </a>
           </div>
         </div>
@@ -248,84 +219,50 @@ function Hero() {
 /* ---------------------------------- fleet --------------------------------- */
 
 function Fleet() {
-  const [filter, setFilter] = useState<Category>("all");
-  const visible = useMemo(
-    () => CARS.filter((c) => filter === "all" || c.category.includes(filter)),
-    [filter],
-  );
-
   return (
     <section id="flota" className="carbon-texture scroll-mt-16 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
-              Flota RevUp
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
-              Nasza Flota <span className="text-muted-foreground">(wkrótce w wynajmie)</span>
-            </h2>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {FILTERS.map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setFilter(f.id)}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
-                  filter === f.id
-                    ? "border-primary bg-primary text-primary-foreground glow-red-sm"
-                    : "border-border bg-secondary/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+        <div className="max-w-3xl">
+          <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
+            Flota RevUp
+          </p>
+          <h2 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
+            Nasza Flota <span className="text-muted-foreground">(wkrótce w wynajmie)</span>
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Trzy kategorie maszyn przygotowanych na bieszczadzkie trasy. Pierwsze auta już w sezonie
+            2026/2027.
+          </p>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
-          {visible.map((car) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((cat) => (
             <article
-              key={car.name}
+              key={cat.id}
               className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:glow-red-sm"
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={car.img}
-                  alt={car.name}
+                  src={cat.img}
+                  alt={cat.title}
                   loading="lazy"
-                  width={1600}
-                  height={900}
+                  width={1792}
+                  height={1024}
                   className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-wide text-primary-foreground uppercase glow-red-sm">
-                  Rezerwuj wkrótce
+                  Premiera wkrótce
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="font-display text-lg font-black uppercase italic">{car.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{car.tagline}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {car.specs.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-border bg-secondary/70 px-2.5 py-1 text-xs font-medium text-metallic"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-5 flex items-center justify-between gap-3">
-                  <span className="font-display text-sm font-bold tracking-wide text-primary">
-                    {car.price}
-                  </span>
-                  <a
-                    href="#waitlist"
-                    className="rounded-md border border-primary/60 px-3.5 py-2 text-xs font-bold tracking-wide text-primary uppercase transition-all hover:bg-primary hover:text-primary-foreground"
-                  >
-                    Sprawdź dostępność
-                  </a>
-                </div>
+                <h3 className="font-display text-lg font-black uppercase italic">{cat.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{cat.subtitle}</p>
+                <a
+                  href="#waitlist"
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold tracking-wide text-primary uppercase transition-colors hover:text-primary-foreground"
+                >
+                  Powiadom mnie o premierze <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </article>
           ))}
@@ -421,98 +358,123 @@ function Owners() {
   ];
 
   return (
-    <section id="wlasciciele" className="carbon-texture scroll-mt-16 py-24">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
-          <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
-            Dla właścicieli aut
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
-            Twój samochód stoi w garażu?{" "}
-            <span className="text-primary">Niech zarabia na siebie.</span>
-          </h2>
-          <div className="mt-10 grid gap-4">
-            {points.map((p) => (
-              <div
-                key={p.title}
-                className="flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/50"
-              >
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-primary/10">
-                  <p.icon className="h-6 w-6 text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-display font-bold tracking-wide uppercase">{p.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
-                </div>
-              </div>
-            ))}
+    <section
+      id="wlasciciele"
+      className="scroll-mt-16 border-y border-primary/30 bg-gradient-to-b from-carbon via-background to-carbon py-24"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl border border-primary/40 bg-primary/10 p-6 text-center sm:p-10">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              background:
+                "radial-gradient(circle at center, oklch(0.577 0.239 27.3), transparent 70%)",
+            }}
+          />
+          <div className="relative">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/20 px-3 py-1 text-xs font-bold tracking-wide text-primary uppercase">
+              <Wallet className="h-3 w-3" /> Pasywny dochód z auta
+            </span>
+            <h2 className="mt-4 font-display text-2xl font-black leading-tight tracking-tight uppercase italic sm:text-4xl">
+              Masz w garażu samochód sportowy lub premium?
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/90">
+              Dołącz do floty RevUp Rent i generuj pasywny dochód co miesiąc na bezpiecznych
+              warunkach.
+            </p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 lg:sticky lg:top-24 lg:self-start">
-          {sent ? (
-            <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
-              <CheckCircle2 className="h-16 w-16 text-primary glow-red-sm rounded-full" />
-              <h3 className="mt-6 font-display text-2xl font-black uppercase italic">
-                Zgłoszenie wysłane!
-              </h3>
-              <p className="mt-3 max-w-sm text-muted-foreground">
-                Dziękujemy. Skontaktujemy się z Tobą w ciągu 24 godzin, aby omówić warunki
-                współpracy.
-              </p>
+        <div className="mt-14 grid gap-12 lg:grid-cols-2">
+          <div>
+            <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
+              Dla właścicieli aut
+            </p>
+            <h3 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
+              Twój samochód stoi w garażu?{" "}
+              <span className="text-primary">Niech zarabia na siebie.</span>
+            </h3>
+            <div className="mt-10 grid gap-4">
+              {points.map((p) => (
+                <div
+                  key={p.title}
+                  className="flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/50"
+                >
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-primary/10">
+                    <p.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-display font-bold tracking-wide uppercase">{p.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
-            <>
-              <h3 className="font-display text-xl font-black uppercase italic">
-                Zgłoś swoje auto do floty
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Wypełnij formularz — oddzwonimy z indywidualną kalkulacją zysku.
-              </p>
-              <form
-                className="mt-6 grid gap-4"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-              >
-                <div>
-                  <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                    Imię i nazwisko
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Jan Kowalski"
-                    className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                    Telefon
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+48 600 000 000"
-                    className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 lg:sticky lg:top-24 lg:self-start">
+            {sent ? (
+              <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
+                <CheckCircle2 className="h-16 w-16 rounded-full text-primary glow-red-sm" />
+                <h3 className="mt-6 font-display text-2xl font-black uppercase italic">
+                  Zgłoszenie wysłane!
+                </h3>
+                <p className="mt-3 max-w-sm text-muted-foreground">
+                  Dziękujemy. Skontaktujemy się z Tobą w ciągu 24 godzin, aby omówić warunki
+                  współpracy.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h3 className="font-display text-xl font-black uppercase italic">
+                  Zgłoś swoje auto do floty
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Wypełnij formularz — oddzwonimy z indywidualną kalkulacją zysku.
+                </p>
+                <form
+                  className="mt-6 grid gap-4"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setSent(true);
+                  }}
+                >
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                      Model auta
+                      Imię
                     </label>
                     <input
                       required
                       type="text"
-                      placeholder="np. Audi RS3"
+                      placeholder="Twoje imię"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
                     />
                   </div>
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                      Rocznik
+                      Numer telefonu
+                    </label>
+                    <input
+                      required
+                      type="tel"
+                      placeholder="+48 795 248 814"
+                      className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
+                      Marka i model auta
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="np. BMW M4 Competition"
+                      className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
+                      Rok produkcji
                     </label>
                     <input
                       required
@@ -523,16 +485,16 @@ function Owners() {
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
                     />
                   </div>
-                </div>
-                <button
-                  type="submit"
-                  className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
-                >
-                  Wyślij zgłoszenie
-                </button>
-              </form>
-            </>
-          )}
+                  <button
+                    type="submit"
+                    className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
+                  >
+                    Wyślij zgłoszenie
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -543,10 +505,10 @@ function Owners() {
 
 function About() {
   const stats = [
-    { icon: Zap, value: "4+", label: "supercary w flocie startowej" },
-    { icon: Timer, value: "3,1 s", label: "najszybsze 0–100 km/h" },
+    { icon: Gauge, value: "3", label: "kategorie aut w przygotowaniu" },
+    { icon: Timer, value: "Sezon 2026/27", label: "premiera floty" },
     { icon: MapPin, value: "3", label: "lokalizacje: Rzeszów, Sanok, Bieszczady" },
-    { icon: Cog, value: "24/7", label: "telemetria i opieka nad flotą" },
+    { icon: ShieldCheck, value: "100%", label: "ubezpieczenie AC i telemetria" },
   ];
 
   return (
@@ -645,7 +607,7 @@ function Waitlist() {
             </div>
             <div>
               <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                Preferowane auto
+                Preferowana kategoria
               </label>
               <select
                 required
@@ -653,14 +615,14 @@ function Waitlist() {
                 className="mt-1.5 w-full appearance-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-ring"
               >
                 <option value="" disabled>
-                  Wybierz z floty…
+                  Wybierz kategorię…
                 </option>
-                {CARS.map((c) => (
-                  <option key={c.name} value={c.name}>
-                    {c.name}
+                {CATEGORIES.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.title}
                   </option>
                 ))}
-                <option value="biezczady-experience">Bieszczady Supercar Experience</option>
+                <option value="bieszczady-experience">Bieszczady Supercar Experience</option>
                 <option value="dowolne">Jeszcze nie wiem — zaskoczcie mnie</option>
               </select>
             </div>
