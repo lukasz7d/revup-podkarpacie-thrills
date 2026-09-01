@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Wynajem samochodów sportowych i supercarów na Podkarpaciu. Audi RS3, BMW M4, Porsche 911, Audi R8 V10. Bieszczady Supercar Experience. Zapisz się na waitlistę z rabatem -10%.",
+          "Wynajem samochodów sportowych i supercarów na Podkarpaciu. Supercary V10, sportowe coupe M/RS oraz egzotyki. Bieszczady Supercar Experience. Zapisz się na waitlistę z rabatem -10%.",
       },
       { property: "og:title", content: "RevUp Rent — Wynajem supercarów na Podkarpaciu" },
       {
