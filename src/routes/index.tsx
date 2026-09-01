@@ -360,98 +360,123 @@ function Owners() {
   ];
 
   return (
-    <section id="wlasciciele" className="carbon-texture scroll-mt-16 py-24">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
-          <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
-            Dla właścicieli aut
-          </p>
-          <h2 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
-            Twój samochód stoi w garażu?{" "}
-            <span className="text-primary">Niech zarabia na siebie.</span>
-          </h2>
-          <div className="mt-10 grid gap-4">
-            {points.map((p) => (
-              <div
-                key={p.title}
-                className="flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/50"
-              >
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-primary/10">
-                  <p.icon className="h-6 w-6 text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-display font-bold tracking-wide uppercase">{p.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
-                </div>
-              </div>
-            ))}
+    <section
+      id="wlasciciele"
+      className="scroll-mt-16 border-y border-primary/30 bg-gradient-to-b from-carbon via-background to-carbon py-24"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl border border-primary/40 bg-primary/10 p-6 text-center sm:p-10">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              background:
+                "radial-gradient(circle at center, oklch(0.577 0.239 27.3), transparent 70%)",
+            }}
+          />
+          <div className="relative">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/50 bg-primary/20 px-3 py-1 text-xs font-bold tracking-wide text-primary uppercase">
+              <Wallet className="h-3 w-3" /> Pasywny dochód z auta
+            </span>
+            <h2 className="mt-4 font-display text-2xl font-black leading-tight tracking-tight uppercase italic sm:text-4xl">
+              Masz w garażu samochód sportowy lub premium?
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/90">
+              Dołącz do floty RevUp Rent i generuj pasywny dochód co miesiąc na bezpiecznych
+              warunkach.
+            </p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 lg:sticky lg:top-24 lg:self-start">
-          {sent ? (
-            <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
-              <CheckCircle2 className="h-16 w-16 text-primary glow-red-sm rounded-full" />
-              <h3 className="mt-6 font-display text-2xl font-black uppercase italic">
-                Zgłoszenie wysłane!
-              </h3>
-              <p className="mt-3 max-w-sm text-muted-foreground">
-                Dziękujemy. Skontaktujemy się z Tobą w ciągu 24 godzin, aby omówić warunki
-                współpracy.
-              </p>
+        <div className="mt-14 grid gap-12 lg:grid-cols-2">
+          <div>
+            <p className="font-display text-sm font-bold tracking-[0.3em] text-primary uppercase">
+              Dla właścicieli aut
+            </p>
+            <h3 className="mt-2 font-display text-3xl font-black tracking-tight uppercase italic sm:text-5xl">
+              Twój samochód stoi w garażu?{" "}
+              <span className="text-primary">Niech zarabia na siebie.</span>
+            </h3>
+            <div className="mt-10 grid gap-4">
+              {points.map((p) => (
+                <div
+                  key={p.title}
+                  className="flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/50"
+                >
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-primary/10">
+                    <p.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-display font-bold tracking-wide uppercase">{p.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
-            <>
-              <h3 className="font-display text-xl font-black uppercase italic">
-                Zgłoś swoje auto do floty
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Wypełnij formularz — oddzwonimy z indywidualną kalkulacją zysku.
-              </p>
-              <form
-                className="mt-6 grid gap-4"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-              >
-                <div>
-                  <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                    Imię i nazwisko
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Jan Kowalski"
-                    className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                    Telefon
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+48 600 000 000"
-                    className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 lg:sticky lg:top-24 lg:self-start">
+            {sent ? (
+              <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
+                <CheckCircle2 className="h-16 w-16 rounded-full text-primary glow-red-sm" />
+                <h3 className="mt-6 font-display text-2xl font-black uppercase italic">
+                  Zgłoszenie wysłane!
+                </h3>
+                <p className="mt-3 max-w-sm text-muted-foreground">
+                  Dziękujemy. Skontaktujemy się z Tobą w ciągu 24 godzin, aby omówić warunki
+                  współpracy.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h3 className="font-display text-xl font-black uppercase italic">
+                  Zgłoś swoje auto do floty
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Wypełnij formularz — oddzwonimy z indywidualną kalkulacją zysku.
+                </p>
+                <form
+                  className="mt-6 grid gap-4"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setSent(true);
+                  }}
+                >
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                      Model auta
+                      Imię
                     </label>
                     <input
                       required
                       type="text"
-                      placeholder="np. Audi RS3"
+                      placeholder="Twoje imię"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
                     />
                   </div>
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                      Rocznik
+                      Numer telefonu
+                    </label>
+                    <input
+                      required
+                      type="tel"
+                      placeholder="+48 795 248 814"
+                      className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
+                      Marka i model auta
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="np. BMW M4 Competition"
+                      className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
+                      Rok produkcji
                     </label>
                     <input
                       required
@@ -462,16 +487,16 @@ function Owners() {
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
                     />
                   </div>
-                </div>
-                <button
-                  type="submit"
-                  className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
-                >
-                  Wyślij zgłoszenie
-                </button>
-              </form>
-            </>
-          )}
+                  <button
+                    type="submit"
+                    className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
+                  >
+                    Wyślij zgłoszenie
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </section>
