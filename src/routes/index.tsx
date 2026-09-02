@@ -120,14 +120,9 @@ function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex min-w-0 items-center" aria-label="RevUp Rent — strona główna">
-          <img
-            src={logoUrl}
-            alt="RevUp Rent"
-            className="h-10 w-auto shrink-0 sm:h-12"
-            width={804}
-            height={325}
-          />
+          <Logo />
         </a>
+
 
         <div className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
