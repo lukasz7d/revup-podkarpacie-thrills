@@ -689,15 +689,9 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
           <a href="#top" className="flex items-center" aria-label="RevUp Rent — strona główna">
-            <img
-              src={logoUrl}
-              alt="RevUp Rent"
-              className="h-10 w-auto"
-              width={804}
-              height={325}
-              loading="lazy"
-            />
+            <Logo size="sm" />
           </a>
+
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Wynajem supercarów i samochodów sportowych. Rzeszów • Sanok • Bieszczady.
           </p>
