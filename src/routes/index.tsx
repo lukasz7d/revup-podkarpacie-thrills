@@ -18,15 +18,41 @@ import {
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-supercar.jpg";
-import logoAsset from "@/assets/logo.png.asset.json";
-import v10Asset from "@/assets/category-v10.jpg.asset.json";
-import coupeAsset from "@/assets/category-coupe.jpg.asset.json";
-import exoticAsset from "@/assets/category-exotic.jpg.asset.json";
+import logoAsset from "@/assets/logo-mark.png.asset.json";
+import v10Asset from "@/assets/car-r8.jpg.asset.json";
+import coupeAsset from "@/assets/car-m4.jpg.asset.json";
+import exoticAsset from "@/assets/car-p911.jpg.asset.json";
+import { sendLead } from "@/lib/send-lead";
 
 const logoUrl = logoAsset.url;
 const categoryV10 = v10Asset.url;
 const categoryCoupe = coupeAsset.url;
 const categoryExotic = exoticAsset.url;
+
+/* ---------------------------------- logo ---------------------------------- */
+
+function Logo({ size = "md" }: { size?: "md" | "sm" }) {
+  return (
+    <span className="flex flex-col items-center leading-none">
+      <img
+        src={logoUrl}
+        alt="RevUp Rent"
+        className={size === "md" ? "h-8 w-auto sm:h-10" : "h-8 w-auto"}
+        width={990}
+        height={400}
+      />
+      <span
+        className={`mt-1 font-display font-black text-white uppercase ${
+          size === "md" ? "text-[10px] tracking-[0.55em] sm:text-xs" : "text-[10px] tracking-[0.55em]"
+        }`}
+        style={{ textIndent: "0.55em" }}
+      >
+        Rent
+      </span>
+    </span>
+  );
+}
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
