@@ -18,15 +18,41 @@ import {
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-supercar.jpg";
-import logoAsset from "@/assets/logo.png.asset.json";
-import v10Asset from "@/assets/category-v10.jpg.asset.json";
-import coupeAsset from "@/assets/category-coupe.jpg.asset.json";
-import exoticAsset from "@/assets/category-exotic.jpg.asset.json";
+import logoAsset from "@/assets/logo-mark.png.asset.json";
+import v10Asset from "@/assets/car-r8.jpg.asset.json";
+import coupeAsset from "@/assets/car-m4.jpg.asset.json";
+import exoticAsset from "@/assets/car-p911.jpg.asset.json";
+import { sendLead } from "@/lib/send-lead";
 
 const logoUrl = logoAsset.url;
 const categoryV10 = v10Asset.url;
 const categoryCoupe = coupeAsset.url;
 const categoryExotic = exoticAsset.url;
+
+/* ---------------------------------- logo ---------------------------------- */
+
+function Logo({ size = "md" }: { size?: "md" | "sm" }) {
+  return (
+    <span className="flex flex-col items-center leading-none">
+      <img
+        src={logoUrl}
+        alt="RevUp Rent"
+        className={size === "md" ? "h-8 w-auto sm:h-10" : "h-8 w-auto"}
+        width={990}
+        height={400}
+      />
+      <span
+        className={`mt-1 font-display font-black text-white uppercase ${
+          size === "md" ? "text-[10px] tracking-[0.55em] sm:text-xs" : "text-[10px] tracking-[0.55em]"
+        }`}
+        style={{ textIndent: "0.55em" }}
+      >
+        Rent
+      </span>
+    </span>
+  );
+}
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -94,14 +120,9 @@ function Header() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto grid h-16 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
         <a href="#top" className="flex min-w-0 items-center" aria-label="RevUp Rent — strona główna">
-          <img
-            src={logoUrl}
-            alt="RevUp Rent"
-            className="h-10 w-auto shrink-0 sm:h-12"
-            width={804}
-            height={325}
-          />
+          <Logo />
         </a>
+
 
         <div className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
@@ -241,19 +262,21 @@ function Fleet() {
               key={cat.id}
               className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:glow-red-sm"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden bg-black">
                 <img
                   src={cat.img}
                   alt={cat.title}
                   loading="lazy"
-                  width={1792}
-                  height={1024}
-                  className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  width={1600}
+                  height={900}
+                  className="aspect-video w-full object-cover brightness-[0.55] contrast-115 saturate-75 transition-all duration-500 group-hover:scale-105 group-hover:brightness-75"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 <span className="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-wide text-primary-foreground uppercase glow-red-sm">
                   Premiera wkrótce
                 </span>
               </div>
+
               <div className="p-5">
                 <h3 className="font-display text-lg font-black uppercase italic">{cat.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{cat.subtitle}</p>
@@ -478,6 +501,7 @@ function Owners() {
                     </label>
                     <input
                       required
+                      name="Rok produkcji"
                       type="number"
                       min="2005"
                       max="2026"
@@ -487,10 +511,12 @@ function Owners() {
                   </div>
                   <button
                     type="submit"
-                    className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
+                    disabled={loading}
+                    className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red disabled:opacity-60"
                   >
-                    Wyślij zgłoszenie
+                    {loading ? "Wysyłanie…" : "Wyślij zgłoszenie"}
                   </button>
+
                 </form>
               </>
             )}
@@ -666,15 +692,9 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
           <a href="#top" className="flex items-center" aria-label="RevUp Rent — strona główna">
-            <img
-              src={logoUrl}
-              alt="RevUp Rent"
-              className="h-10 w-auto"
-              width={804}
-              height={325}
-              loading="lazy"
-            />
+            <Logo size="sm" />
           </a>
+
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Wynajem supercarów i samochodów sportowych. Rzeszów • Sanok • Bieszczady.
           </p>
