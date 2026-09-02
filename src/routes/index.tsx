@@ -501,6 +501,7 @@ function Owners() {
                     </label>
                     <input
                       required
+                      name="Rok produkcji"
                       type="number"
                       min="2005"
                       max="2026"
@@ -510,10 +511,12 @@ function Owners() {
                   </div>
                   <button
                     type="submit"
-                    className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
+                    disabled={loading}
+                    className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red disabled:opacity-60"
                   >
-                    Wyślij zgłoszenie
+                    {loading ? "Wysyłanie…" : "Wyślij zgłoszenie"}
                   </button>
+
                 </form>
               </>
             )}
