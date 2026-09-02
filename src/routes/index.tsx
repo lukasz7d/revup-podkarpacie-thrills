@@ -262,19 +262,21 @@ function Fleet() {
               key={cat.id}
               className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:glow-red-sm"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden bg-black">
                 <img
                   src={cat.img}
                   alt={cat.title}
                   loading="lazy"
-                  width={1792}
-                  height={1024}
-                  className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  width={1600}
+                  height={900}
+                  className="aspect-video w-full object-cover brightness-[0.55] contrast-115 saturate-75 transition-all duration-500 group-hover:scale-105 group-hover:brightness-75"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 <span className="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold tracking-wide text-primary-foreground uppercase glow-red-sm">
                   Premiera wkrótce
                 </span>
               </div>
+
               <div className="p-5">
                 <h3 className="font-display text-lg font-black uppercase italic">{cat.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{cat.subtitle}</p>
