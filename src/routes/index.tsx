@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type React from "react";
 import { useState } from "react";
 import {
   Gauge,
@@ -22,6 +23,8 @@ import logoAsset from "@/assets/logo-mark.png.asset.json";
 import v10Asset from "@/assets/car-r8.jpg.asset.json";
 import coupeAsset from "@/assets/car-m4.jpg.asset.json";
 import exoticAsset from "@/assets/car-p911.jpg.asset.json";
+import { toast } from "sonner";
+
 import { sendLead } from "@/lib/send-lead";
 
 const logoUrl = logoAsset.url;
@@ -362,6 +365,26 @@ function Bieszczady() {
 
 function Owners() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(
+      Array.from(new FormData(form).entries()).map(([k, v]) => [k, String(v)]),
+    );
+    setLoading(true);
+    try {
+      await sendLead("RevUp Rent — zgłoszenie auta do floty", data);
+      setSent(true);
+      toast.success("Dziękujemy! Twoje zgłoszenie zostało wysłane. Skontaktujemy się z Tobą w ciągu 24h.");
+    } catch {
+      toast.error("Nie udało się wysłać zgłoszenia. Spróbuj ponownie lub zadzwoń: +48 795 248 814.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const points = [
     {
       icon: ShieldCheck,
@@ -455,19 +478,14 @@ function Owners() {
                 <p className="mt-2 text-sm text-muted-foreground">
                   Wypełnij formularz — oddzwonimy z indywidualną kalkulacją zysku.
                 </p>
-                <form
-                  className="mt-6 grid gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSent(true);
-                  }}
-                >
+                <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
                       Imię
                     </label>
                     <input
                       required
+                      name="Imię"
                       type="text"
                       placeholder="Twoje imię"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -479,6 +497,7 @@ function Owners() {
                     </label>
                     <input
                       required
+                      name="Numer telefonu"
                       type="tel"
                       placeholder="+48 795 248 814"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -490,11 +509,13 @@ function Owners() {
                     </label>
                     <input
                       required
+                      name="Marka i model auta"
                       type="text"
                       placeholder="np. BMW M4 Competition"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
                     />
                   </div>
+
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
                       Rok produkcji
@@ -572,6 +593,26 @@ function About() {
 
 function Waitlist() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(
+      Array.from(new FormData(form).entries()).map(([k, v]) => [k, String(v)]),
+    );
+    setLoading(true);
+    try {
+      await sendLead("RevUp Rent — zapis na waitlistę", data);
+      setSent(true);
+      toast.success("Dziękujemy! Twoje zgłoszenie zostało wysłane. Skontaktujemy się z Tobą w ciągu 24h.");
+    } catch {
+      toast.error("Nie udało się wysłać zgłoszenia. Spróbuj ponownie lub zadzwoń: +48 795 248 814.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   return (
     <section id="waitlist" className="carbon-texture relative scroll-mt-16 overflow-hidden py-24">
@@ -604,10 +645,7 @@ function Waitlist() {
         ) : (
           <form
             className="mt-10 grid gap-4 rounded-2xl border border-border bg-card p-6 text-left sm:p-8"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
+            onSubmit={handleSubmit}
           >
             <div>
               <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
@@ -615,6 +653,7 @@ function Waitlist() {
               </label>
               <input
                 required
+                name="Imię"
                 type="text"
                 placeholder="Twoje imię"
                 className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -626,6 +665,7 @@ function Waitlist() {
               </label>
               <input
                 required
+                name="E-mail"
                 type="email"
                 placeholder="ty@przyklad.pl"
                 className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -637,6 +677,7 @@ function Waitlist() {
               </label>
               <select
                 required
+                name="Preferowana kategoria"
                 defaultValue=""
                 className="mt-1.5 w-full appearance-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-ring"
               >
@@ -654,10 +695,12 @@ function Waitlist() {
             </div>
             <button
               type="submit"
-              className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
+              disabled={loading}
+              className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red disabled:opacity-60"
             >
-              Rezerwuję rabat -10%
+              {loading ? "Wysyłanie…" : "Rezerwuję rabat -10%"}
             </button>
+
           </form>
         )}
       </div>
