@@ -455,19 +455,14 @@ function Owners() {
                 <p className="mt-2 text-sm text-muted-foreground">
                   Wypełnij formularz — oddzwonimy z indywidualną kalkulacją zysku.
                 </p>
-                <form
-                  className="mt-6 grid gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSent(true);
-                  }}
-                >
+                <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
                       Imię
                     </label>
                     <input
                       required
+                      name="Imię"
                       type="text"
                       placeholder="Twoje imię"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -479,6 +474,7 @@ function Owners() {
                     </label>
                     <input
                       required
+                      name="Numer telefonu"
                       type="tel"
                       placeholder="+48 795 248 814"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -490,11 +486,13 @@ function Owners() {
                     </label>
                     <input
                       required
+                      name="Marka i model auta"
                       type="text"
                       placeholder="np. BMW M4 Competition"
                       className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
                     />
                   </div>
+
                   <div>
                     <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
                       Rok produkcji
