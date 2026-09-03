@@ -36,23 +36,13 @@ const categoryExotic = exoticAsset.url;
 
 function Logo({ size = "md" }: { size?: "md" | "sm" }) {
   return (
-    <span className="flex flex-col items-center leading-none">
-      <img
-        src={logoUrl}
-        alt="RevUp Rent"
-        className={size === "md" ? "h-8 w-auto sm:h-10" : "h-8 w-auto"}
-        width={990}
-        height={400}
-      />
-      <span
-        className={`mt-1 font-display font-black text-white uppercase ${
-          size === "md" ? "text-[10px] tracking-[0.55em] sm:text-xs" : "text-[10px] tracking-[0.55em]"
-        }`}
-        style={{ textIndent: "0.55em" }}
-      >
-        Rent
-      </span>
-    </span>
+    <img
+      src={logoUrl}
+      alt="RevUp Rent"
+      className={size === "md" ? "h-10 w-auto sm:h-12" : "h-10 w-auto"}
+      width={800}
+      height={360}
+    />
   );
 }
 
