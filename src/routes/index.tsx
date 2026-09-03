@@ -604,10 +604,7 @@ function Waitlist() {
         ) : (
           <form
             className="mt-10 grid gap-4 rounded-2xl border border-border bg-card p-6 text-left sm:p-8"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
+            onSubmit={handleSubmit}
           >
             <div>
               <label className="text-xs font-bold tracking-wide text-muted-foreground uppercase">
@@ -615,6 +612,7 @@ function Waitlist() {
               </label>
               <input
                 required
+                name="Imię"
                 type="text"
                 placeholder="Twoje imię"
                 className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -626,6 +624,7 @@ function Waitlist() {
               </label>
               <input
                 required
+                name="E-mail"
                 type="email"
                 placeholder="ty@przyklad.pl"
                 className="mt-1.5 w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-ring"
@@ -637,6 +636,7 @@ function Waitlist() {
               </label>
               <select
                 required
+                name="Preferowana kategoria"
                 defaultValue=""
                 className="mt-1.5 w-full appearance-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-ring"
               >
@@ -654,10 +654,12 @@ function Waitlist() {
             </div>
             <button
               type="submit"
-              className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red"
+              disabled={loading}
+              className="mt-2 rounded-md bg-primary px-6 py-4 font-display text-sm font-bold tracking-wide text-primary-foreground uppercase italic transition-all hover:glow-red disabled:opacity-60"
             >
-              Rezerwuję rabat -10%
+              {loading ? "Wysyłanie…" : "Rezerwuję rabat -10%"}
             </button>
+
           </form>
         )}
       </div>
