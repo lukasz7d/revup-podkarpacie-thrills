@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-supercar.jpg";
-import logoAsset from "@/assets/logo-mark.png.asset.json";
+import logoAsset from "@/assets/revup-logo.png.asset.json";
 import v10Asset from "@/assets/car-r8.jpg.asset.json";
 import coupeAsset from "@/assets/car-m4.jpg.asset.json";
 import exoticAsset from "@/assets/car-p911.jpg.asset.json";
