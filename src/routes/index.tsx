@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type React from "react";
 import { useState } from "react";
 import {
   Gauge,
@@ -22,6 +23,8 @@ import logoAsset from "@/assets/logo-mark.png.asset.json";
 import v10Asset from "@/assets/car-r8.jpg.asset.json";
 import coupeAsset from "@/assets/car-m4.jpg.asset.json";
 import exoticAsset from "@/assets/car-p911.jpg.asset.json";
+import { toast } from "sonner";
+
 import { sendLead } from "@/lib/send-lead";
 
 const logoUrl = logoAsset.url;
