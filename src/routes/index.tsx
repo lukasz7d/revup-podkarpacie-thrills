@@ -572,6 +572,26 @@ function About() {
 
 function Waitlist() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(
+      Array.from(new FormData(form).entries()).map(([k, v]) => [k, String(v)]),
+    );
+    setLoading(true);
+    try {
+      await sendLead("RevUp Rent — zapis na waitlistę", data);
+      setSent(true);
+      toast.success("Dziękujemy! Twoje zgłoszenie zostało wysłane. Skontaktujemy się z Tobą w ciągu 24h.");
+    } catch {
+      toast.error("Nie udało się wysłać zgłoszenia. Spróbuj ponownie lub zadzwoń: +48 795 248 814.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   return (
     <section id="waitlist" className="carbon-texture relative scroll-mt-16 overflow-hidden py-24">
